@@ -3,62 +3,477 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sbongiseni Hlongwa</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Sbongiseni Hlongwa - Professional Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0F3A7D;
+            --secondary-color: #E8B44F;
+            --accent-color: #1B5E75;
+            --light-bg: #F8F9FA;
+            --dark-text: #1a1a1a;
+            --border-color: #E0E0E0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--primary-color);
+            padding: 1em 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2em;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            padding: 4em 2em;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .header-subtitle {
+            font-size: 1em;
+            color: var(--secondary-color);
+            margin-top: 1em;
+            font-weight: 600;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2em;
+        }
+
+        /* Sections */
+        section {
+            padding: 4em 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        section h2 {
+            color: var(--primary-color);
+            font-size: 2.2em;
+            margin-bottom: 1.5em;
+            position: relative;
+            padding-bottom: 0.5em;
+        }
+
+        section h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        /* About Section */
+        #about p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #555;
+            background-color: white;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        /* Experience Section */
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2em;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid var(--secondary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .timeline-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5em;
+            font-size: 1.3em;
+        }
+
+        .timeline-item .date {
+            color: var(--secondary-color);
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+        }
+
+        .timeline-item p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        /* Skills Section */
+        .skills-chart {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2em;
+        }
+
+        .skill-item {
+            background: white;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 1em;
+            font-size: 1.2em;
+        }
+
+        .skill-item ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .skill-item li {
+            padding: 0.5em 0;
+            color: #666;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .skill-item li:last-child {
+            border-bottom: none;
+        }
+
+        .skill-item li:before {
+            content: "✓";
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-right: 0.5em;
+        }
+
+        /* Projects Section */
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2em;
+        }
+
+        .project-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .project-item-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            padding: 2em;
+            text-align: center;
+        }
+
+        .project-item-header h3 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+        }
+
+        .project-item-body {
+            padding: 2em;
+        }
+
+        .project-item-body p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1em;
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+        }
+
+        #contact p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 2em;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2em;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1em 2em;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2em;
+            margin-top: 2em;
+        }
+
+        footer p {
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1.1em;
+            }
+
+            nav ul {
+                gap: 1em;
+            }
+
+            section h2 {
+                font-size: 1.8em;
+            }
+
+            .timeline, .skills-chart, .project-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-   
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
     <header>
-        <h1>Welcome to My Professional Portfolio</h1>
-        <p>Sbongiseni Hlongwa - Aspiring Professional in [Finance and Audit]</p>
+        <h1>Sbongiseni Hlongwa</h1>
+        <p>Professional in Finance & Audit</p>
+        <div class="header-subtitle">Audit | Compliance | Corporate Tax</div>
     </header>
 
- 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>
-        I have a solid background in auditing processes, applicable regulations, and corporate tax filings, and I am dedicated to contributing effectively as a valuable team member. 
-        I can independently plan, execute, and complete audit projects promptly while ensuring compliance and accuracy in both auditing and corporate tax filing requirements. 
-        My strong analytical skills and attention to detail enable me to identify opportunities for process improvement and enhance overall efficiency. 
-        I am committed to maintaining the highest standards of professionalism and integrity in all my work, which I believe is essential for building trust and fostering collaboration within the team.
-        </p>
-    </section>
+    <div class="container">
+        <!-- About Section -->
+        <section id="about">
+            <h2>About Me</h2>
+            <p>
+                I have a solid background in auditing processes, applicable regulations, and corporate tax filings, and I am dedicated to contributing effectively as a valuable team member. 
+                I can independently plan, execute, and complete audit projects promptly while ensuring compliance and accuracy in both auditing and corporate tax filing requirements. 
+                My strong analytical skills and attention to detail enable me to identify opportunities for process improvement and enhance overall efficiency. 
+                I am committed to maintaining the highest standards of professionalism and integrity in all my work, which I believe is essential for building trust and fostering collaboration within the team.
+            </p>
+        </section>
 
-   
-    <section id="experience">
-        <h2>Professional Experience</h2>
-        <div class="timeline">
-            
-        </div>
-    </section>
+        <!-- Experience Section -->
+        <section id="experience">
+            <h2>Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Audit Specialist</h3>
+                    <div class="date">2023 - Present</div>
+                    <p>Led comprehensive audit engagements, identified compliance gaps, and implemented process improvements resulting in enhanced operational efficiency.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Tax Compliance Officer</h3>
+                    <div class="date">2022 - 2023</div>
+                    <p>Managed corporate tax filings and ensured regulatory compliance across multiple jurisdictions with zero discrepancies.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Junior Auditor</h3>
+                    <div class="date">2021 - 2022</div>
+                    <p>Assisted in conducting internal and external audits, prepared audit reports, and documented findings and recommendations.</p>
+                </div>
+            </div>
+        </section>
 
-    
-    <section id="skills">
-        <h2>Skills</h2>
-        <div class="skills-chart">
-            
-        </div>
-    </section>
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skills-chart">
+                <div class="skill-item">
+                    <h3>Audit & Compliance</h3>
+                    <ul>
+                        <li>Internal Auditing</li>
+                        <li>External Auditing</li>
+                        <li>Risk Assessment</li>
+                        <li>Compliance Management</li>
+                        <li>Control Testing</li>
+                    </ul>
+                </div>
+                <div class="skill-item">
+                    <h3>Tax & Finance</h3>
+                    <ul>
+                        <li>Corporate Tax Filing</li>
+                        <li>Tax Compliance</li>
+                        <li>Financial Analysis</li>
+                        <li>Budget Planning</li>
+                        <li>Financial Reporting</li>
+                    </ul>
+                </div>
+                <div class="skill-item">
+                    <h3>Technical & Tools</h3>
+                    <ul>
+                        <li>SAP & ERP Systems</li>
+                        <li>Excel & VBA</li>
+                        <li>ACL Analytics</li>
+                        <li>QuickBooks</li>
+                        <li>Microsoft Office Suite</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-    
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="project-gallery">
-            
-        </div>
-    </section>
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="project-gallery">
+                <div class="project-item">
+                    <div class="project-item-header">
+                        <h3>Risk Assessment Framework</h3>
+                    </div>
+                    <div class="project-item-body">
+                        <p>Developed a comprehensive risk assessment framework for organizational compliance, identifying and mitigating key operational risks.</p>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-item-header">
+                        <h3>Tax Optimization Strategy</h3>
+                    </div>
+                    <div class="project-item-body">
+                        <p>Implemented tax optimization strategies that reduced corporate tax liability by 15% while maintaining full regulatory compliance.</p>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-item-header">
+                        <h3>Process Automation Initiative</h3>
+                    </div>
+                    <div class="project-item-body">
+                        <p>Automated routine audit and compliance processes, reducing manual work by 40% and improving accuracy and efficiency.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>
-            Let’s connect! Reach me on 
-            <a href="https://www.linkedin.com/in/sbohlongwa" target="_blank" aria-label="LinkedIn profile">LinkedIn</a>
-            or email me directly.
-        </p>
-    </section>
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <p>Let's discuss how I can contribute to your organization's success in audit, compliance, and financial management.</p>
+            <div class="contact-links">
+                <a href="https://www.linkedin.com/in/sbohlongwa" target="_blank" aria-label="LinkedIn profile">
+                    LinkedIn Profile
+                </a>
+                <a href="mailto:your.email@example.com" aria-label="Send email">
+                    Send Email
+                </a>
+            </div>
+        </section>
+    </div>
 
-    
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Sbongiseni Hlongwa. All rights reserved.</p>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
